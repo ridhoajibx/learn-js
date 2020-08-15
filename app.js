@@ -7,7 +7,7 @@ const headingTitle = (title) => {
         // console.error("Your title is not type of string");
     }
 }
-headingTitle ("Create New Title here!");
+headingTitle ("Learn JavaScripts more deeply");
 
 // Collect UI element for todos
 const todoForm = document.querySelector("#todo-form");
@@ -21,26 +21,29 @@ todoList.addEventListener("click", deleteTodo);
 
 function addTodo(e) {
     e.preventDefault();
-    // Create element li with DOM
-    const li = document.createElement("li");
-    // Add class to element li
-    li.className = "list-group-item d-flex justify-content-between align-items-center mb-1";
-    // Add child (value) to element li
-    li.appendChild(document.createTextNode(todoInput.value));
+    if (todoInput.value) {
+        // Create element li with DOM
+        const li = document.createElement("li");
+        // Add class to element li
+        li.className = "list-group-item d-flex justify-content-between align-items-center mb-1";
+        // Add child (value) to element li
+        li.appendChild(document.createTextNode(todoInput.value));
 
-    // Create element a with DOM
-    const a = document.createElement("a");
-    a.href = "#";
-    a.className = "badge badge-danger delete-todo";
-    a.innerHTML = "Delete";
+        // Create element a with DOM
+        const a = document.createElement("a");
+        a.href = "#";
+        a.className = "badge badge-danger delete-todo";
+        a.innerHTML = "Delete";
 
-    // input element a to li children
-    li.appendChild(a);
+        // input element a to li children
+        li.appendChild(a);
 
-    // add elemen li to todoList element
-    todoList.appendChild(li);
-    todoInput.value = "";
-    
+        // add elemen li to todoList element
+        todoList.appendChild(li);
+        todoInput.value = "";
+    } else {
+        alert("Todo cannot empty!");
+    }
 }
 
 function deleteTodo(e) {
