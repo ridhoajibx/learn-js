@@ -1,0 +1,146 @@
+// var numberA = 100;
+// var numberB = numberA + 50;
+// console.log(numberB);
+
+// let cariGenap = function (angka) {
+//     if (angka % 2 == 0) {
+//         return `angka ${angka} adalah bilangan genap`;
+//     }
+//     return `angka ${angka} adalah bilangan ganjil`;
+// }
+// console.log(cariGenap(1));
+// console.log(cariGenap(2));
+// console.log(cariGenap(3));
+// console.log(cariGenap(4));
+// console.log(cariGenap(5));
+// console.log(cariGenap(6));
+
+// let name = "budi";
+// name = "ridho";
+// console.log(name);
+
+// Control flow
+// let yourName = String(prompt("What is your name?"));
+// alert(`so your name is ${yourName}`);
+
+// Conditional execution
+/**
+ * 
+if else
+let yourYearOfBirth = Number(prompt("Tahun berapa anda lahir ?"));
+if (2020 - yourYearOfBirth < 17) {
+    alert("kamu masih kecil")
+} else if (2020 - yourYearOfBirth > 17 && 2020 - yourYearOfBirth < 40) {
+    alert("Kamu sudah dewasa")
+} else if (2020 - yourYearOfBirth > 40 && 2020 - yourYearOfBirth < 80) {
+    alert("Kamu sudah tua")
+} else if (2020 - yourYearOfBirth > 80 && 2020 - yourYearOfBirth < 100) {
+    alert("Ajal sudah mendekat bung")
+} else if (2020 - yourYearOfBirth > 100) {
+    alert("Keajaiban atau mustahil")
+}
+
+Ternary operator
+let yourYearOfBirth = Number(prompt("Tahun berapa anda lahir ?"));
+2020 - yourYearOfBirth < 17 ? alert("Kamu belum cukup umur") : alert("Kamu sudah cukup umur")
+
+Switch case
+let cuacaHariIni = prompt("Bagaimana cuaca hari ini?");
+switch (cuacaHariIni) {
+    case "mendung":
+        alert("Sedia payung sebelum hujan");
+        break;
+    case "panas":
+        alert("Jangan lupa berjemur untuk menjaga sistem imun tubuh");
+        break;
+    case "hujan":
+        alert("Segelas kopi hangat cocok menemani harimu saat ini");
+        break;
+    case "cerah":
+        alert("Olahraga adalah hal yang bagus untuk kamu lakukan hari ini");
+        break;
+    default:
+        alert("cuaca kamu tidak jelas");
+}
+*
+ */
+
+/**
+ * Looping
+ * While
+    let count = 0;
+    while (count <= 12) {
+        console.log(count)
+        count = count + 2;
+    }
+ * Do
+    let count = 0;
+    do {
+        console.log(count)
+        count = count + 2;
+    } while (count <= 12);
+ * for
+    for (let i = 0; i <= 12; i + 2) {
+        console.log(i);
+    }
+    for (let i = "*"; i.length <= 5; i = i + "*") {
+        console.log(i);    
+    }
+ */
+
+ /**
+  * Function defenition
+    const perpangkatan = function (angka) {
+        return angka * angka;
+     }
+    console.log(perpangkatan(2));
+    console.log(perpangkatan(4));
+    console.log(perpangkatan(6));
+    
+ * Function declaration
+    function perpangkatan(angka) {
+        return angka * angka;
+    }
+    console.log(perpangkatan(2));
+    console.log(perpangkatan(4));
+    console.log(perpangkatan(6));
+  * 
+  * ES6 arrow function
+    const perpangkatan = (n) => {
+        return n * n;
+    }
+    console.log(perpangkatan(2));
+    or
+    const perpangkatan = n =>  n * n;
+    console.log(perpangkatan(5));
+  * 
+  * Function side-effect
+    function sayHello() {
+        alert("Hello");
+    }
+    console.log(sayHello());
+
+    with input form/promt
+    function sayHello(name = String(prompt("Siapa nama kamu ?"))) {
+        alert(`Hello ${name}, selamat datang di website kami!`);
+    }
+    console.log(sayHello());
+  * 
+  */
+// a := 2; b := 5;tmp := 2*b;
+// b := 2*a;
+// a := tmp;
+// writeln(b, “ “, a); 
+
+// let a = 2;
+// let b = 5;
+// let c = 2*b;
+
+// if (b = 2*a) {
+//     console.log(b);;
+// }
+
+// if (a = c) {
+//     console.log(a);
+// }
+
