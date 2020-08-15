@@ -39,15 +39,18 @@ function addTodo(e) {
 
     // add elemen li to todoList element
     todoList.appendChild(li);
-    console.log(li);
+    todoInput.value = "";
+    
 }
 
 function deleteTodo(e) {
     e.preventDefault();
     // Conditional to delete todolist
     if (e.target.classList.contains("delete-todo")) {
-        const parent = e.target.parentElement;
-        parent.remove();
-        console.log(parent);
+        // show alert
+        if (confirm(`Are you sure to delete?`)) {
+            const parent = e.target.parentElement;
+            parent.remove();
+        }
     }
 }
