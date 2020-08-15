@@ -25,7 +25,7 @@ function addTodo(e) {
     // Add class to element li
     li.className = "list-group-item d-flex justify-content-between align-items-center mb-1";
     // Add child (value) to element li
-    li.appendChild(document.createTextNode("Value yang di input"));
+    li.appendChild(document.createTextNode(todoInput.value));
 
     // Create element a with DOM
     const a = document.createElement("a");
@@ -34,6 +34,9 @@ function addTodo(e) {
     a.innerHTML = "Delete";
 
     // input element a to li children
-    li.appendChild(a); 
+    li.appendChild(a);
+
+    // add elemen li to todoList element
+    todoList.appendChild(li);
     console.log(li);
 }
