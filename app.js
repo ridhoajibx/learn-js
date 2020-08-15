@@ -17,6 +17,7 @@ const todoList = document.querySelector("#todo-list");
 const clearBtn = document.querySelector("#clear-todos");
 
 todoForm.addEventListener("submit", addTodo);
+todoList.addEventListener("click", deleteTodo);
 
 function addTodo(e) {
     e.preventDefault();
@@ -30,7 +31,7 @@ function addTodo(e) {
     // Create element a with DOM
     const a = document.createElement("a");
     a.href = "#";
-    a.className = "badge badge-danger";
+    a.className = "badge badge-danger delete-todo";
     a.innerHTML = "Delete";
 
     // input element a to li children
@@ -39,4 +40,14 @@ function addTodo(e) {
     // add elemen li to todoList element
     todoList.appendChild(li);
     console.log(li);
+}
+
+function deleteTodo(e) {
+    e.preventDefault();
+    // Conditional to delete todolist
+    if (e.target.classList.contains("delete-todo")) {
+        const parent = e.target.parentElement;
+        parent.remove();
+        console.log(parent);
+    }
 }
