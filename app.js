@@ -10,6 +10,7 @@ const headingTitle = (title) => {
 headingTitle ("Learn JavaScripts more deeply");
 
 // Collect UI element for todos
+
 const todoForm = document.querySelector("#todo-form");
 const todoInput = document.querySelector("#todo-input");
 const filterInput = document.querySelector("#filter-input");
@@ -17,13 +18,53 @@ const todoList = document.querySelector("#todo-list");
 const clearBtn = document.querySelector("#clear-todos");
 
 // Ini adalah kumpulan EventListerner
-todoForm.addEventListener("submit", addTodo);
-todoList.addEventListener("click", deleteTodo);
-clearBtn.addEventListener("click", clearTodos);
-filterInput.addEventListener("keyup", filterTodos); //method keyup is to search query or data from up to down and back to up again by typing
+immediateLoadEventListener();
+function immediateLoadEventListener() {
+    
+    // mendapatkan todo yang berada dalam local storage dan di render ke dalam browser
+    document.addEventListener("DOMContentLoaded", getTodos);
+    // ini adalah event untuk menambahkan todo
+    todoForm.addEventListener("submit", addTodo);
+    // ini adalah event untuk menghapus 1 todo
+    todoList.addEventListener("click", deleteTodo);
+    // ini adalah event untuk menghapus keseluruhan todo
+    clearBtn.addEventListener("click", clearTodos);
+    // ini adalah event untuk memfilter todo
+    filterInput.addEventListener("keyup", filterTodos); //method keyup is to search query or data from up to down and back to up again by typing
+}
+
 
 // Ini adalah DOM Functions
+function getTodos() {
+    let todos;
 
+    if (localStorage.getItem("todos") == null) {
+        todos = [];
+    } else {
+        todos = JSON.parse(localStorage.getItem("todos"));
+    }
+
+    todos.forEach((todo) => {
+        // Create element li with DOM
+        const li = document.createElement("li");
+        // Add class to element li
+        li.className = "todo-item list-group-item d-flex justify-content-between align-items-center mb-1";
+        // Add child (value) to element li
+        li.appendChild(document.createTextNode(todo));
+
+        // Create element a with DOM
+        const a = document.createElement("a");
+        a.href = "#";
+        a.className = "badge badge-danger delete-todo";
+        a.innerHTML = "Delete";
+
+        // input element a to li children
+        li.appendChild(a);
+
+        // add elemen li to todoList element
+        todoList.appendChild(li);
+    })
+}
 
 function addTodo(e) {
     e.preventDefault();
