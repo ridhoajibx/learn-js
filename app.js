@@ -16,10 +16,14 @@ const filterInput = document.querySelector("#filter-input");
 const todoList = document.querySelector("#todo-list");
 const clearBtn = document.querySelector("#clear-todos");
 
+// Ini adalah kumpulan EventListerner
 todoForm.addEventListener("submit", addTodo);
 todoList.addEventListener("click", deleteTodo);
 clearBtn.addEventListener("click", clearTodos);
-filterInput.addEventListener("keyup", filterTodos); //method keyup is to search query or data from up to down and back to up again
+filterInput.addEventListener("keyup", filterTodos); //method keyup is to search query or data from up to down and back to up again by typing
+
+// Ini adalah DOM Functions
+
 
 function addTodo(e) {
     e.preventDefault();
@@ -42,10 +46,25 @@ function addTodo(e) {
 
         // add elemen li to todoList element
         todoList.appendChild(li);
+
+        addToLocalstorage(todoInput.value);
+
         todoInput.value = "";
     } else {
         alert("Todo cannot empty!");
     }
+}
+
+function addToLocalstorage(todoInputValue) {
+    let todos;
+
+    if (localStorage.getItem("todos") == null) {
+        todos = [];
+    } else {
+        todos = JSON.parse(localStorage.getItem("todos"));
+    }
+    todos.push(todoInputValue);
+    localStorage.setItem("todos", JSON.stringify(todos));
 }
 
 function deleteTodo(e) {
