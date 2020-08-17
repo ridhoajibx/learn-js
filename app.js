@@ -121,6 +121,11 @@ function deleteTodoLocalStorage(deleteElement) {
 
 function clearTodos() {
     todoList.innerHTML = "";
+    clearTodosLocalStorage();
+}
+
+function clearTodosLocalStorage() {
+    localStorage.clear();
 }
 
 function filterTodos(e) {
