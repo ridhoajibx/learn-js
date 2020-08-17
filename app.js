@@ -33,9 +33,29 @@ function immediateLoadEventListener() {
     filterInput.addEventListener("keyup", filterTodos); //method keyup is to search query or data from up to down and back to up again by typing
 }
 
+// Reuseable codes w/ funtion (refactor)
+function createTodosElement(value) {
+    // Create element li with DOM
+    const li = document.createElement("li");
+    // Add class to element li
+    li.className = "todo-item list-group-item d-flex justify-content-between align-items-center mb-1";
+    // Add child (value) to element li
+    li.appendChild(document.createTextNode(value));
 
-// Ini adalah DOM Functions
-function getTodos() {
+    // Create element a with DOM
+    const a = document.createElement("a");
+    a.href = "#";
+    a.className = "badge badge-danger delete-todo";
+    a.innerHTML = "Delete";
+
+    // input element a to li children
+    li.appendChild(a);
+
+    // add elemen li to todoList element
+    todoList.appendChild(li);
+}
+
+function getTodosFromLocalStorage() {
     let todos;
 
     if (localStorage.getItem("todos") == null) {
@@ -43,51 +63,22 @@ function getTodos() {
     } else {
         todos = JSON.parse(localStorage.getItem("todos"));
     }
+    return todos;
+}
+
+// Ini adalah DOM Functions
+function getTodos() {
+    const todos = getTodosFromLocalStorage();
 
     todos.forEach((todo) => {
-        // Create element li with DOM
-        const li = document.createElement("li");
-        // Add class to element li
-        li.className = "todo-item list-group-item d-flex justify-content-between align-items-center mb-1";
-        // Add child (value) to element li
-        li.appendChild(document.createTextNode(todo));
-
-        // Create element a with DOM
-        const a = document.createElement("a");
-        a.href = "#";
-        a.className = "badge badge-danger delete-todo";
-        a.innerHTML = "Delete";
-
-        // input element a to li children
-        li.appendChild(a);
-
-        // add elemen li to todoList element
-        todoList.appendChild(li);
+        createTodosElement(todo);
     })
 }
 
 function addTodo(e) {
     e.preventDefault();
     if (todoInput.value) {
-        // Create element li with DOM
-        const li = document.createElement("li");
-        // Add class to element li
-        li.className = "todo-item list-group-item d-flex justify-content-between align-items-center mb-1";
-        // Add child (value) to element li
-        li.appendChild(document.createTextNode(todoInput.value));
-
-        // Create element a with DOM
-        const a = document.createElement("a");
-        a.href = "#";
-        a.className = "badge badge-danger delete-todo";
-        a.innerHTML = "Delete";
-
-        // input element a to li children
-        li.appendChild(a);
-
-        // add elemen li to todoList element
-        todoList.appendChild(li);
-
+        createTodosElement(todoInput.value);
         addToLocalstorage(todoInput.value);
 
         todoInput.value = "";
@@ -97,13 +88,7 @@ function addTodo(e) {
 }
 
 function addToLocalstorage(todoInputValue) {
-    let todos;
-
-    if (localStorage.getItem("todos") == null) {
-        todos = [];
-    } else {
-        todos = JSON.parse(localStorage.getItem("todos"));
-    }
+    const todos = getTodosFromLocalStorage();
     todos.push(todoInputValue);
     localStorage.setItem("todos", JSON.stringify(todos));
 }
