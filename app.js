@@ -101,8 +101,22 @@ function deleteTodo(e) {
         if (confirm(`Are you sure to delete?`)) {
             const parent = e.target.parentElement;
             parent.remove();
+            deleteTodoLocalStorage(parent);
         }
     }
+}
+
+function deleteTodoLocalStorage(deleteElement) {
+    const todos = getTodosFromLocalStorage();
+
+    todos.forEach((todo, index) => {
+        if (deleteElement.firstChild.textContent === todo) {
+            todos.splice(index, 1);
+        }
+    })
+    localStorage.setItem("todos", JSON.stringify(todos));
+
+
 }
 
 function clearTodos() {
